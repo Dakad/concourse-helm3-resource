@@ -1,3 +1,20 @@
 #!/bin/bash
 
+set -e
+set -o pipefail
+
+exec 3>&1 # make stdout available as fd 3 for the result
+exec 1>&2 # redirect all output to stderr for logging
+
 echo '{"version": {"revision": "N/A", "release": "N/A"}}'
+
+source /opt/resource/common.sh
+
+# Read inputs
+source=$1
+payload=$(mktemp helm-resource-request.XXXXXX)
+cat > $payload <&0
+
+# Prepare
+setup_resource $payload $source
+echo "Resource setup successful."
