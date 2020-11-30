@@ -12,6 +12,7 @@ payload=$(mktemp $TMPDIR/helm-resource-request.XXXXXX)
 cat > $payload <&0
 
 # Prepare
+echo $payload
 setup_resource $payload
 echo "Resource setup successful." 
 
