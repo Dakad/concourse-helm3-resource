@@ -150,6 +150,8 @@ setup_resource() {
   if [ "$tracing_enabled" = "true" ]; then
     set -x
   fi
+  
+  echo $1
 
   echo "Initializing kubectl..."
   setup_kubernetes $1 $2
